@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "SoruDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Soru soru = ViewBag.soru;
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="card">
+    <div class="card-header">
+        Soru Düzenle
+    </div>
+    <div class="card-body">
+        <form action="" method="post">
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">Soru</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="Sual" value="@soru.Sual" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">A</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="A" value="@soru.A" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">B</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="B" value="@soru.B" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">C</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="C" value="@soru.C" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">D</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="D" value="@soru.D" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">E</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="E" value="@soru.E" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">Cevap</label>
+                <div class="col-md-6">
+                    <select class="form-control" name="Cevap" required>
+                        <option value="A" selected="@(soru.Cevap=="A")">A</option>
+                        <option value="B" selected="@(soru.Cevap=="B")">B</option>
+                        <option value="C" selected="@(soru.Cevap=="C")">C</option>
+                        <option value="D" selected="@(soru.Cevap=="D")">D</option>
+                        <option value="E" selected="@(soru.Cevap=="E")">E</option>
+                    </select>
+                </div>
+            </div>
+            <input type="hidden" name="Id" value="@soru.Id" />
+
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

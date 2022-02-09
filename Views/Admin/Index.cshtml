@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    List<Sinav> sinavlar = ViewBag.sinavlar;
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4">Sınav Listesi</h1>
+</div>
+<div class="container">
+    @if (sinavlar.Count != 0)
+    {
+    <a href="/Admin/SinavEkle" class="btn btn-success float-right mb-1">Sınav Ekle</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Sınav</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sinav in sinavlar)
+                {
+                    <tr>
+                        <td>@sinav.SinavAdi</td>
+                        <td>
+                            <a href="/Admin/Sorular?SinavId=@sinav.Id" class="btn btn-primary">Sorular</a>
+                            <a href="/Admin/SoruEkle?SinavId=@sinav.Id" class="btn btn-primary">Soru Ekle</a>
+                            <a href="/Admin/SinavDuzenle?Id=@sinav.Id" class="btn btn-primary">Düzenle</a>
+                            <a href="/Admin/SinavSil?Id=@sinav.Id" class="btn btn-danger" onclick="return confirm('Silmek istediğinizden emin misiniz?');">Sil</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <center>
+            Herhangi bir sınav yok.<br />
+            <a href="/Admin/SinavEkle" class="btn btn-success">Sınav Oluştur</a>
+        </center>
+    }
+</div>

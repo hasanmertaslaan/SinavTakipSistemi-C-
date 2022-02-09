@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Soru Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="card">
+    <div class="card-header">
+        Soru Ekle
+    </div>
+    <div class="card-body">
+        <form action="" method="post">
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">Soru</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="Sual" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">A</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="A" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">B</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="B" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">C</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="C" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">D</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="D" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">E</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="E" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">Cevap</label>
+                <div class="col-md-6">
+                    <select class="form-control" name="Cevap" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

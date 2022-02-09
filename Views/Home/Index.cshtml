@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Anasayfa";
+    List<Sinav> sinavlar = ViewBag.sinavlar;
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4">Hoşgeldiniz</h1>
+    <p>Seçim yaparak sınava girebilirsiniz..</p>
+</div>
+<div class="row">
+    @if (sinavlar.Count != 0)
+    {
+
+        @foreach (var sinav in sinavlar)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white font-weight-bold">
+                        @sinav.SinavAdi
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Toplam Soru: @sinav.SoruAdeti</p>
+
+                        <a href="/Kullanici/SinavaGir?Id=@sinav.Id" class="btn btn-primary btn-sm float-right">Sınava Gir</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <center>
+            Herhangi bir sınav yok.<br />
+        </center>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Sınav";
+    List<Soru> sorular = ViewBag.sorular;
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="card">
+    <div class="card-header">
+        Sınav
+    </div>
+    <div class="card-body">
+        <form action="" method="post">
+            @foreach (var soru in sorular)
+            {
+                <div class="form-group row">
+                    <label class="col-md-12 col-form-label">@(sorular.IndexOf(soru)+1)) @soru.Sual</label>
+                    <div class="col-md-12">
+                        <label><input type="radio" name="Cevap[@soru.Id]" value="A" />@soru.A</label><br />
+                        <label><input type="radio" name="Cevap[@soru.Id]" value="B" />@soru.B</label> <br />
+                        <label><input type="radio" name="Cevap[@soru.Id]" value="C" />@soru.C</label> <br />
+                        <label><input type="radio" name="Cevap[@soru.Id]" value="D" />@soru.D</label> <br />
+                        <label><input type="radio" name="Cevap[@soru.Id]" value="E" />@soru.E</label>
+                    </div>
+                </div>
+                <input type="hidden" name="Id" value="@soru.Id" />
+            }
+
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

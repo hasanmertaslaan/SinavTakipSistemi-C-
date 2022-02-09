@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Sınav Sonuçlarım";
+    List<SinavSonucu> sinavsonuclari = ViewBag.sinavsonuclari;
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4">Sınav Sonuçları</h1>
+</div>
+<div class="container">
+    @if (sinavsonuclari.Count != 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Sınav</th>
+                    <th scope="col">Soru Sayısı</th>
+                    <th scope="col">Doğru Cevap Sayısı</th>
+                    <th scope="col">Yanlış Cevap Sayısı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sinavsonucu in sinavsonuclari)
+                {
+                    <tr>
+                        <td>@sinavsonucu.SinavAdi</td>
+                        <td>@sinavsonucu.SoruSayisi</td>
+                        <td>@sinavsonucu.DogruSayisi</td>
+                        <td>@sinavsonucu.YanlisSayisi</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <center>
+            Herhangi bir sınav sonucu yok.<br />
+        </center>
+    }
+</div>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Sorular";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    List<Soru> sorular = ViewBag.sorular;
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4">Soru Listesi</h1>
+</div>
+<div class="container">
+    @if (sorular.Count != 0)
+    {
+        <a href="/Admin/SoruEkle?SinavId=@Html.ViewContext.HttpContext.Request.Query["SinavId"]" class="btn btn-success float-right mb-1">Soru Ekle</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Soru</th>
+                    <th scope="col">A</th>
+                    <th scope="col">B</th>
+                    <th scope="col">C</th>
+                    <th scope="col">D</th>
+                    <th scope="col">E</th>
+                    <th scope="col">Cevap</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var soru in sorular)
+                {
+                    <tr>
+                        <td>@soru.Sual</td>
+                        <td>@soru.A</td>
+                        <td>@soru.B</td>
+                        <td>@soru.C</td>
+                        <td>@soru.D</td>
+                        <td>@soru.E</td>
+                        <td>@soru.Cevap</td>
+                        <td>
+                            <a href="/Admin/SoruDuzenle?Id=@soru.Id&SinavId=@Html.ViewContext.HttpContext.Request.Query["SinavId"]" class="btn btn-primary">Düzenle</a>
+                            <a href="/Admin/SoruSil?Id=@soru.Id&SinavId=@Html.ViewContext.HttpContext.Request.Query["SinavId"]" class="btn btn-danger" onclick="return confirm('Silmek istediğinizden emin misiniz?');">Sil</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <center>
+            Herhangi bir soru yok.<br />
+            <a href="/Admin/SoruEkle?SinavId=@Html.ViewContext.HttpContext.Request.Query["SinavId"]" class="btn btn-success">Soru Oluştur</a>
+        </center>
+    }
+</div>

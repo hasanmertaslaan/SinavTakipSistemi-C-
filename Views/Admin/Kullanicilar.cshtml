@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Kullanıcılar";
+    Layout = "_LayoutAdmin";
+    List<Kullanici> kullanicilar = ViewBag.kullanicilar;
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"].ToString()
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4">Kullanici Listesi</h1>
+</div>
+<div class="container">
+    @if (kullanicilar.Count != 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Ad Soyad</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Telefon</th>
+                    <th scope="col">Şifre</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kullanici in kullanicilar)
+                {
+                    <tr>
+                        <td>@kullanici.AdSoyad</td>
+                        <td>@kullanici.Mail</td>
+                        <td>@kullanici.Telefon</td>
+                        <td>@kullanici.Sifre</td>
+                        <td>
+                            <a href="/Admin/KullaniciSil?Id=@kullanici.Id" class="btn btn-danger" onclick="return confirm('Silmek istediğinizden emin misiniz?');">Sil</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <center>
+            Herhangi bir kullanıcı yok.<br />
+        </center>
+    }
+</div>
